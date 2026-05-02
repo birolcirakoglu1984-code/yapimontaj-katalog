@@ -85,13 +85,32 @@ button,a{touch-action:manipulation;cursor:pointer}
   padding:0 16px;gap:10px;
 }
 .hdr-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
-.hdr-mark{
-  width:36px;height:36px;border:1.5px solid var(--gold2);
+/* CSS Logo Mark */
+.hdr-logo-mark{
+  width:50px;height:50px;border-radius:50%;flex-shrink:0;
+  background:radial-gradient(circle at 40% 35%,rgba(200,154,80,.15),rgba(0,0,0,.6));
+  border:1.5px solid var(--gold2);
   display:flex;align-items:center;justify-content:center;
-  font-family:'Oswald',sans-serif;font-size:.85rem;font-weight:700;color:var(--gold2);
-  transform:rotate(45deg);flex-shrink:0;
+  position:relative;
+  box-shadow:0 0 12px rgba(200,154,80,.2),inset 0 0 8px rgba(0,0,0,.4);
 }
-.hdr-mark span{transform:rotate(-45deg);display:block}
+.hdr-logo-mark::before{
+  content:'';position:absolute;inset:3px;border-radius:50%;
+  border:1px solid rgba(200,154,80,.2);
+}
+.hlm-diamond{
+  width:26px;height:26px;
+  border:1.5px solid var(--gold);
+  transform:rotate(45deg);
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(192,74,40,.15);
+  position:relative;z-index:1;
+}
+.hlm-diamond span{
+  transform:rotate(-45deg);
+  font-family:'Oswald',sans-serif;font-size:.72rem;font-weight:700;
+  color:var(--gold2);letter-spacing:-.01em;line-height:1;
+}
 .hdr-name{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;letter-spacing:.12em;color:var(--white);line-height:1}
 .hdr-name em{color:var(--gold2);font-style:normal}
 .hdr-sub{font-size:.5rem;letter-spacing:.25em;color:var(--muted2);text-transform:uppercase;display:block;margin-top:2px}
@@ -718,7 +737,7 @@ footer{background:rgba(10,7,4,.75);backdrop-filter:blur(16px);border-top:1px sol
 <!-- HEADER -->
 <header class="hdr">
   <a class="hdr-logo" href="#top">
-    <img src="https://res.cloudinary.com/duje74bov/image/upload/v1777405112/prof%C4%B1l_ss7mdf.jpg" alt="YapıMontaj Logo" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:1.5px solid var(--gold);flex-shrink:0">
+    <div class="hdr-logo-mark"><div class="hlm-diamond"><span>YM</span></div></div>
     <div>
       <div class="hdr-name">YAPI<em>MONTAJ</em></div>
       <span class="hdr-sub">Yapı Montaj</span>
@@ -835,7 +854,10 @@ footer{background:rgba(10,7,4,.75);backdrop-filter:blur(16px);border-top:1px sol
 <button class="scr-top" id="scrTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Sayfanın başına git">↑</button>
 
 <footer>
-  <div class="ft-logo">YAPI<em>MONTAJ</em></div>
+  <div class="ft-logo" style="display:flex;align-items:center;justify-content:center;gap:10px">
+    <div class="hdr-logo-mark" style="width:36px;height:36px"><div class="hlm-diamond" style="width:18px;height:18px"><span style="font-size:.52rem">YM</span></div></div>
+    YAPI<em>MONTAJ</em>
+  </div>
   <div class="ft-tag">Yapı Montaj Uzmanı</div>
   <div class="ft-links">
     <a href="tel:+905325774581">📞 0532 577 45 81</a>
