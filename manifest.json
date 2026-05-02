@@ -1,0 +1,33 @@
+{
+  "name": "YapıMontaj Kataloğu",
+  "short_name": "YapıMontaj",
+  "description": "Çelik Yapı & Montaj Ürün Kataloğu — Garaj, Sundurma, Oluk, Bahçe Sistemleri",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#18120A",
+  "theme_color": "#C04A28",
+  "orientation": "portrait-primary",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/duje74bov/image/upload/v1777405112/prof%C4%B1l_ss7mdf.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/duje74bov/image/upload/v1777405112/prof%C4%B1l_ss7mdf.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "shopping"],
+  "shortcuts": [
+    {
+      "name": "WhatsApp Randevu",
+      "url": "https://wa.me/905325774581?text=Merhaba%2C%20bilgi%20almak%20istiyorum.",
+      "description": "Hızlı WhatsApp Randevu"
+    }
+  ]
+}
