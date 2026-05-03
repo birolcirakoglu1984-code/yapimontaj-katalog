@@ -15,7 +15,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="YapıMontaj Kataloğu">
 <meta name="twitter:description" content="Garaj, Sundurma, Kış Bahçesi ve daha fazlası. Ücretsiz keşif randevusu için WhatsApp'tan ulaşın.">
-<meta name="theme-color" content="#EDE6DB">
+<meta name="theme-color" content="#C04A28">
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="YapıMontaj">
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/duje74bov/image/upload/v1777405112/prof%C4%B1l_ss7mdf.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -34,6 +40,14 @@
     "availableLanguage": "Turkish"
   }
 }
+</script>
+<!-- Google Analytics 4 — Measurement ID'yi buraya yaz -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','G-XXXXXXXXXX');
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -671,6 +685,27 @@ footer{background:rgba(10,7,4,.75);backdrop-filter:blur(16px);border-top:1px sol
 .ft-links a:hover{color:var(--gold)}
 .ft-copy{font-size:.68rem;color:var(--muted)}
 
+/* ── SKELETON LOADING ── */
+.pcard-sk{
+  border-radius:var(--r);overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(18,13,8,.70);
+}
+.sk-img{aspect-ratio:3/2;background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.04) 75%);background-size:400% 100%;animation:skShimmer 1.4s ease infinite}
+.sk-body{padding:18px 20px 16px;border-left:3px solid rgba(192,74,40,.3)}
+.sk-line{height:11px;border-radius:6px;margin-bottom:10px;background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.04) 75%);background-size:400% 100%;animation:skShimmer 1.4s ease infinite}
+.sk-line.w80{width:80%}.sk-line.w55{width:55%}.sk-line.w35{width:35%}
+@keyframes skShimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+
+/* ── SHARE BUTTON ── */
+.btn-share{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  color:rgba(255,255,255,.7);border-radius:5px;
+  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;transition:all .2s;flex-shrink:0;
+}
+.btn-share:hover{background:var(--green);border-color:var(--green);color:#fff;transform:translateY(-1px)}
+
 /* ── LIGHTBOX ── */
 .lb-ov{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:600;display:none;flex-direction:column;align-items:center;justify-content:center}
 .lb-ov.on{display:flex}
@@ -797,6 +832,7 @@ footer{background:rgba(10,7,4,.75);backdrop-filter:blur(16px);border-top:1px sol
   <div class="vbanner-btns">
     <a class="btn-gold" href="https://wa.me/905325774581?text=Ücretsiz keşif randevusu almak istiyorum." target="_blank">WhatsApp Randevu</a>
     <a class="btn-ghost" href="tel:+905325774581">0532 577 45 81</a>
+    <a class="btn-ghost" href="tel:+905458853406">0545 885 34 06</a>
   </div>
 </div>
 
@@ -826,6 +862,12 @@ footer{background:rgba(10,7,4,.75);backdrop-filter:blur(16px);border-top:1px sol
       <div class="contact-card-ic">📞</div>
       <div class="contact-card-lbl">Telefon</div>
       <div class="contact-card-val"><a href="tel:+905325774581">0532 577 45 81</a></div>
+      <div class="contact-card-sub">Hafta içi 08:00 – 18:00</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-ic">📱</div>
+      <div class="contact-card-lbl">2. Hat</div>
+      <div class="contact-card-val"><a href="tel:+905458853406">0545 885 34 06</a></div>
       <div class="contact-card-sub">Hafta içi 08:00 – 18:00</div>
     </div>
     <div class="contact-card">
@@ -861,6 +903,7 @@ footer{background:rgba(10,7,4,.75);backdrop-filter:blur(16px);border-top:1px sol
   <div class="ft-tag">Yapı Montaj Uzmanı</div>
   <div class="ft-links">
     <a href="tel:+905325774581">📞 0532 577 45 81</a>
+    <a href="tel:+905458853406">📱 0545 885 34 06</a>
     <a href="https://wa.me/905325774581" target="_blank">💬 WhatsApp</a>
     <a href="#katalog">Katalog</a>
   </div>
@@ -1069,13 +1112,56 @@ function mapRow(r){
   return{id:r.id,name:r.name||'',cat,badge:r.badge||'',desc:r.description||'',specs:r.specs||'',mat:r.mat||'',photos:Array.isArray(r.photos)?r.photos:[],video:r.video||'',sort_order:r.sort_order||0};
 }
 
+// ── STAT COUNTER ANIMATION ──
+function animateCount(el,target,duration=1600){
+  if(!el||isNaN(target)||target===0)return;
+  const start=performance.now();
+  const step=ts=>{
+    const p=Math.min((ts-start)/duration,1);
+    const ease=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(ease*target);
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=target;
+  };
+  requestAnimationFrame(step);
+}
+
+// ── SHARE PRODUCT ──
+function shareProduct(e,id){
+  e.stopPropagation();
+  const p=prods.find(x=>x.id===id);
+  if(!p)return;
+  const url='https://yapimontaj-katolog.com.tr';
+  const text=`*${p.name}*\n${p.desc?p.desc+'\n':''}\nYapıMontaj Kataloğu: ${url}`;
+  if(navigator.share){
+    navigator.share({title:p.name,text:p.desc||'',url}).catch(()=>{});
+  } else {
+    window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+  }
+  gtag('event','share',{item_id:id,item_name:p.name,method:'whatsapp'});
+}
+
+// ── SKELETON LOADING ──
+function showSkeleton(){
+  document.getElementById('pgrid').innerHTML=Array(6).fill(0).map(()=>`
+    <div class="pcard-sk">
+      <div class="sk-img"></div>
+      <div class="sk-body">
+        <div class="sk-line w80"></div>
+        <div class="sk-line w55"></div>
+        <div class="sk-line w35"></div>
+      </div>
+    </div>`).join('');
+}
+
 // ── LOAD PRODUCTS ──
 async function loadProds(){
-  document.getElementById('pgrid').innerHTML='<div class="pgrid-empty"><div class="pgrid-empty-ic">⏳</div><p>Ürünler yükleniyor...</p></div>';
+  showSkeleton();
   const{data,error}=await sb.from('products').select('*').order('sort_order',{ascending:true}).order('created_at',{ascending:false});
   if(error){toast('Ürünler yüklenemedi!',true);console.error(error);return;}
   prods=(data||[]).map(mapRow);
-  document.getElementById('statTotal').textContent=prods.length;
+  animateCount(document.getElementById('statTotal'),prods.length);
+  animateCount(document.getElementById('statCats'),CATS.length);
   renderCats();renderProds();
 }
 
@@ -1194,6 +1280,7 @@ function renderProds(){
         ${specs.length?`<div class="card-specs">${specs.map(s=>`<span class="spec-pill">${esc(s)}</span>`).join('')}</div>`:''}
         <div class="card-foot">
           <div class="card-keşif"><div class="keşif-dot"></div>Ücretsiz Keşif</div>
+          <button class="btn-share" onclick="shareProduct(event,'${esc(p.id)}')" title="Paylaş">&#8599;</button>
           <button class="btn-detay">Detay &rarr;</button>
         </div>
       </div>
@@ -1387,7 +1474,7 @@ function renderPhotoSlots(){
       <img src="${url}" alt="">
       <button class="del-photo" onclick="removePhoto(${i})">✕</button>
     </div>`).join('');
-  if(formPhotos.length<6){
+  if(formPhotos.length<10){
     html+=`<div class="photo-slot" onclick="document.getElementById('fImgInput').click()">
       <div class="add-ic">📷</div>
       <div class="add-txt">Ekle</div>
@@ -1398,7 +1485,7 @@ function renderPhotoSlots(){
 function removePhoto(i){formPhotos.splice(i,1);renderPhotoSlots()}
 
 async function handleImgs(inp){
-  const files=Array.from(inp.files).slice(0,6-formPhotos.length);
+  const files=Array.from(inp.files).slice(0,10-formPhotos.length);
   if(!files.length)return;
   const prog=document.getElementById('uploadProg');
   const fill=document.getElementById('uploadFill');
@@ -1647,6 +1734,13 @@ document.getElementById('ftYear').textContent=new Date().getFullYear();
 document.getElementById('statCats').textContent=CATS.length;
 checkStorage();
 loadProds();
+
+// ── PWA SERVICE WORKER ──
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
 </script>
 </body>
 </html>
